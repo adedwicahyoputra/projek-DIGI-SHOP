@@ -4,11 +4,15 @@
   "description": "Bot WhatsApp Otomatis Admin TITIK DIGI SHOP (Pricelist 43 Produk & Auto Kirim QRIS saat ketik bayar/payment)",
   "main": "bot-wa.js",
   "scripts": {
-    "start": "node bot-wa.js"
+    "start": "node bot-wa.js",
+    "web": "live-server --port=3000 --entry-file=index.html"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.9",
     "pino": "^9.5.0",
     "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
