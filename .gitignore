@@ -1,0 +1,32 @@
+# ==========================================
+# GITIGNORE - TITIK DIGI SHOP
+# ==========================================
+
+# Dependensi Node.js
+node_modules/
+
+# Sesi Login WhatsApp (PENTING: Jangan di-upload agar nomor WA aman!)
+sesi_wa_admin/
+*session*
+*.session
+
+# File Konfigurasi Sensitif
+.env
+.env.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# File Sistem Operasi
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Folder Editor
+.vscode/
+.idea/

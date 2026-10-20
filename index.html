@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>TITIK DIGI SHOP — Satu Tempat, Beragam Kebutuhan Digital</title>
+  <meta name="description" content="Katalog resmi aplikasi premium TITIK DIGI SHOP. Satu tempat, beragam kebutuhan digital. Klik nama aplikasi untuk cek pricelist otomatis via WhatsApp Admin 085859517510." />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    body {
+      background-color: #090A0F;
+      color: #F1F5F9;
+      overflow-x: hidden;
+    }
+    .ambient-bg {
+      background: radial-gradient(75% 45% at 50% 0%, rgba(99, 102, 241, 0.14) 0%, rgba(16, 185, 129, 0.04) 50%, rgba(9, 10, 15, 0) 100%);
+    }
+    .cat-card {
+      background: #11131C;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .item-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.18s ease;
+    }
+    .item-btn:hover {
+      background: rgba(99, 102, 241, 0.14);
+      border-color: rgba(99, 102, 241, 0.5);
+      transform: translateY(-1px);
+    }
+    .item-btn:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- NAVBAR SIMPEL -->
+  <header class="sticky top-0 z-40 bg-[#090A0F]/90 backdrop-blur-xl border-b border-white/[0.06]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-extrabold text-xs shrink-0">
+          TDS
+        </div>
+        <div>
+          <span class="font-extrabold text-sm sm:text-base tracking-tight text-white block leading-none">TITIK DIGI SHOP</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-400 font-medium block mt-0.5">Satu tempat, beragam kebutuhan digital.</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          onclick="downloadAdminVCard()"
+          class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 transition">
+          Save Kontak
+        </button>
+        <a href="https://wa.me/6285859517510?text=bayar"
+           target="_blank" rel="noopener"
+           class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition">
+          Minta QRIS
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO RINGKAS (DENGAN TAGLINE TOKO)
+       ========================================================= -->
+  <section class="ambient-bg pt-8 pb-6 sm:pt-12 sm:pb-10 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <!-- Attention -->
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] text-emerald-400 font-medium mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        Bot Pricelist Otomatis 24 Jam • Full Garansi
+      </span>
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+        TITIK DIGI SHOP
+      </h1>
+      <p class="text-sm sm:text-base font-semibold text-indigo-400 mt-1">
+        Satu tempat, beragam kebutuhan digital.
+      </p>
+
+      <!-- Interest & Desire -->
+      <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2.5 leading-relaxed">
+        Hemat hingga 80%, proses instan, dan bergaransi penuh. <strong>Cukup klik nama aplikasi di bawah</strong> — otomatis masuk ke WhatsApp Admin (<strong class="text-slate-200">0858-5951-7510</strong>) untuk melihat pricelist-nya.
+      </p>
+
+      <!-- Action: Cari Cepat / Ketik Manual -->
+      <div class="mt-5 max-w-md mx-auto">
+        <div class="relative">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Cari cepat aplikasi (cth: Netflix, Gemini, Canva)..."
+            class="w-full bg-[#11131C] border border-white/10 focus:border-indigo-500 rounded-xl pl-9 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition"
+          />
+          <svg class="w-4 h-4 text-slate-500 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       DAFTAR KATEGORI & PRODUK SIMPEL (TIDAK MEMBOSANKAN SAAT SCROLL)
+       ========================================================= -->
+  <section id="katalog" class="py-4 sm:py-6 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto">
+      <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        <!-- Di-render secara ringkas per kategori oleh JavaScript -->
+      </div>
+
+      <!-- Jika pencarian tidak ditemukan -->
+      <div id="emptyState" class="hidden text-center py-8 cat-card rounded-2xl">
+        <p class="text-sm text-slate-300 font-medium">Aplikasi tidak ditemukan.</p>
+        <a href="https://wa.me/6285859517510?text=menu"
+           target="_blank" rel="noopener"
+           class="inline-block mt-3 px-4 py-2 rounded-lg text-xs font-semibold bg-indigo-600 text-white">
+          Lihat Menu Lengkap di WA Admin →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       INFO SINGKAT: ALUR BAYAR QRIS & WAJIB SAVE KONTAK ADMIN
+       ========================================================= -->
+  <section class="py-8 sm:py-10 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
+
+      <!-- Box 1: Alur Otomatis WA & Cara Scan QRIS -->
+      <div class="cat-card rounded-2xl p-5 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm sm:text-base font-bold text-white">⚡ Cara Order & Bayar via QRIS</h2>
+          <a href="https://wa.me/6285859517510?text=bayar"
+             target="_blank" rel="noopener"
+             class="text-xs font-semibold text-emerald-400 hover:underline">
+            Ketik 'bayar' di WA →
+          </a>
+        </div>
+        <ol class="space-y-2 text-xs sm:text-[13px] text-slate-300 leading-relaxed">
+          <li>
+            <strong class="text-white">1. Klik Aplikasi:</strong> Nama produk (misal <code class="text-indigo-400">gemini</code>) otomatis terisi di kotak WA Anda. Kirim pesan untuk lihat Pricelist. <span class="text-slate-400">(Ingin cek produk lain? Bisa langsung ketik manual nama aplikasinya di chat WA atau klik lagi dari web ini).</span>
+          </li>
+          <li>
+            <strong class="text-white">2. Ketik <code class="text-emerald-400">bayar</code>:</strong> Jika cocok dengan harganya, balas ketik <code class="text-emerald-400 font-semibold">bayar</code> maka Bot Admin otomatis mengirim gambar <strong>QR-Code QRIS</strong>.
+          </li>
+          <li>
+            <strong class="text-white">3. Cara Scan QRIS (1 HP):</strong> Simpan/screenshot gambar QRIS ke Galeri &rarr; buka DANA/GoPay/OVO/ShopeePay/M-Banking &rarr; pilih <strong>Scan QRIS</strong> &rarr; klik <strong>Ikon Galeri</strong> &rarr; pilih gambar QRIS & kirim bukti bayar ke Admin.
+          </li>
+        </ol>
+      </div>
+
+      <!-- Box 2: Wajib Save Kontak Admin -->
+      <div class="cat-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-sm sm:text-base font-bold text-white">📌 Wajib Save Kontak Admin</h2>
+            <span class="text-xs font-bold text-indigo-400">0858-5951-7510</span>
+          </div>
+          <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
+            Simpan nomor Admin (<strong>TITIK DIGI SHOP</strong>) di HP Anda untuk mendapatkan:
+          </p>
+          <ul class="space-y-1.5 text-xs text-slate-400">
+            <li>• <strong class="text-slate-200">Syarat Klaim Garansi:</strong> Jaminan garansi penuh selama masa berlangganan.</li>
+            <li>• <strong class="text-slate-200">Update Promo di Story WA:</strong> Info harga terbaru & diskon harian lewat Status WA Admin.</li>
+          </ul>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-white/[0.06] flex items-center gap-2.5">
+          <button
+            type="button"
+            onclick="downloadAdminVCard()"
+            class="flex-1 py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold text-center transition">
+            Simpan Kontak (.vcf)
+          </button>
+          <a href="https://wa.me/6285859517510?text=Halo%20Admin%20*TITIK%20DIGI%20SHOP*%2C%20saya%20sudah%20save%20nomor%20Admin.%20Mohon%20save%20back%20ya."
+             target="_blank" rel="noopener"
+             class="flex-1 py-2.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-200 text-xs font-semibold text-center transition">
+            Minta Save Back WA
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER RINGKAS -->
+  <footer class="border-t border-white/[0.06] py-6 px-4 text-center text-xs text-slate-500">
+    <div class="font-semibold text-slate-300">TITIK DIGI SHOP — Satu tempat, beragam kebutuhan digital.</div>
+    <div class="mt-1">WhatsApp Admin Resmi: <a href="https://wa.me/6285859517510?text=menu" target="_blank" rel="noopener" class="text-indigo-400 hover:text-indigo-300 font-semibold underline">0858-5951-7510</a></div>
+  </footer>
+
+  <!-- =========================================================
+       SCRIPT: DATA PRODUK DALAM KATEGORI SIMPEL & KLIK OTOMATIS WA
+       ========================================================= -->
+  <script>
+    const WA_ADMIN = "6285859517510";
+
+    // Daftar Kategori & Produk yang Simpel, Rapi & Tidak Membosankan (6 Kategori Utama)
+    const catalogData = [
+      {
+        title: "🎬 Kategori Streaming",
+        desc: "Nonton film, series & olahraga kualitas HD/4K",
+        items: [
+          { name: "YouTube", keyword: "youtube", badge: "Populer" },
+          { name: "Netflix", keyword: "netflix", badge: "Populer" },
+          { name: "Vidio", keyword: "vidio", badge: "Bola & Series" },
+          { name: "Disney+", keyword: "disney" },
+          { name: "Prime Video", keyword: "prime vidio" },
+          { name: "HBO", keyword: "hbo" },
+          { name: "Viu", keyword: "viu" },
+          { name: "WeTV", keyword: "wetv" },
+          { name: "iQIYI", keyword: "iqiyi" },
+          { name: "Loklok", keyword: "loklok" }
+        ]
+      },
+      {
+        title: "🤖 Kategori AI (Artificial Intelligence)",
+        desc: "Asisten cerdas untuk tugas, riset, coding & gambar",
+        items: [
+          { name: "Gemini", keyword: "gemini", badge: "Populer" },
+          { name: "ChatGPT", keyword: "chatgpt", badge: "Populer" },
+          { name: "Claude", keyword: "claude" },
+          { name: "Grok", keyword: "grok" },
+          { name: "Leonardo AI", keyword: "leonardo" },
+          { name: "AI (Tools / Illustrator)", keyword: "ai" }
+        ]
+      },
+      {
+        title: "🎨 Kategori Desain & Editing",
+        desc: "Edit desain, foto & video profesional tanpa watermark",
+        items: [
+          { name: "Canva", keyword: "canva", badge: "Populer" },
+          { name: "CapCut", keyword: "capcut", badge: "Populer" },
+          { name: "AM (Alight Motion)", keyword: "am" },
+          { name: "Lightroom", keyword: "lightroom" },
+          { name: "Picsart", keyword: "picsart" },
+          { name: "Meitu", keyword: "meitu" },
+          { name: "Wink", keyword: "wink" }
+        ]
+      },
+      {
+        title: "📱 Kategori Drama Pendek, Anime & Musik",
+        desc: "Maraton short drama viral, anime & musik bebas iklan",
+        items: [
+          { name: "DramaBox", keyword: "dramabox", badge: "Viral" },
+          { name: "Melolo", keyword: "melolo" },
+          { name: "Spotify", keyword: "spotify", badge: "Populer" },
+          { name: "Bstation", keyword: "bstation" },
+          { name: "Crunchyroll", keyword: "crunchyroll" }
+        ]
+      },
+      {
+        title: "🎓 Kategori Kuliah, Kerja & Cloud",
+        desc: "Cek plagiasi, meeting online, bahasa & penyimpanan",
+        items: [
+          { name: "Turnitin", keyword: "turnitin", badge: "Skripsi" },
+          { name: "Zoom", keyword: "zoom" },
+          { name: "Duolingo", keyword: "duolingo" },
+          { name: "GDrive", keyword: "gdrive" },
+          { name: "Google One", keyword: "google one" },
+          { name: "Gmail", keyword: "gmail" }
+        ]
+      },
+      {
+        title: "🚀 Kategori Sosmed, VPN & Utility",
+        desc: "Kebutuhan optimasi sosmed, privasi & olahraga",
+        items: [
+          { name: "Instagram", keyword: "instagram" },
+          { name: "TikTok", keyword: "tiktok" },
+          { name: "Getcontact", keyword: "getcontact" },
+          { name: "VPN", keyword: "vpn" },
+          { name: "Strava", keyword: "strava" }
+        ]
+      }
+    ];
+
+    const catalogGrid = document.getElementById("catalogGrid");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+
+    // Buat link WA otomatis terisi nama produk di kotak ketik buyer
+    function getWaUrl(keyword) {
+      return `https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(keyword.trim().toLowerCase())}`;
+    }
+
+    function renderCatalog(query = "") {
+      const q = query.toLowerCase().trim();
+      let totalFound = 0;
+
+      const html = catalogData.map((cat) => {
+        const filteredItems = cat.items.filter(item =>
+          !q ||
+          item.name.toLowerCase().includes(q) ||
+          item.keyword.toLowerCase().includes(q) ||
+          cat.title.toLowerCase().includes(q)
+        );
+
+        if (filteredItems.length === 0) return "";
+        totalFound += filteredItems.length;
+
+        const itemsHtml = filteredItems.map(item => `
+          <a href="${getWaUrl(item.keyword)}"
+             target="_blank" rel="noopener"
+             class="item-btn rounded-xl px-3.5 py-2.5 flex items-center justify-between gap-2 group">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0"></span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-100 group-hover:text-white truncate">${item.name}</span>
+              ${item.badge ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-500/15 text-indigo-300 border border-indigo-500/20 shrink-0">${item.badge}</span>` : ""}
+            </div>
+            <span class="text-[11px] text-slate-400 group-hover:text-indigo-300 font-medium shrink-0 flex items-center gap-1">
+              <span>Cek Harga</span>
+              <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+            </span>
+          </a>
+        `).join("");
+
+        return `
+          <div class="cat-card rounded-2xl p-5 sm:p-6">
+            <div class="mb-3.5 pb-2.5 border-b border-white/[0.06]">
+              <h2 class="text-base sm:text-lg font-bold text-white">${cat.title}</h2>
+              <p class="text-xs text-slate-400 mt-0.5">${cat.desc}</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              ${itemsHtml}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      if (totalFound === 0) {
+        catalogGrid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+      } else {
+        emptyState.classList.add("hidden");
+        catalogGrid.innerHTML = html;
+      }
+    }
+
+    function downloadAdminVCard() {
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "FN:TITIK DIGI SHOP (Admin)",
+        "ORG:TITIK DIGI SHOP",
+        "TEL;TYPE=CELL,VOICE:+6285859517510",
+        "NOTE:Admin Resmi TITIK DIGI SHOP - Save kontak untuk Syarat Klaim Garansi & Info Promo Story WA.",
+        "END:VCARD"
+      ].join("\n");
+
+      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "TITIK-DIGI-SHOP-Admin.vcf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      renderCatalog(e.target.value);
+    });
+
+    renderCatalog();
+  </script>
+</body>
+</html>
