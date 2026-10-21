@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * BOT WHATSAPP OTOMATIS — ✨ TITIK DIGI SHOP ✨ (Admin: 0858-5951-7510)
+ * BOT WHATSAPP OTOMATIS — ✨ TITIK DIGI SHOP ✨ (Admin: +62 858-5951-7510)
  * ============================================================================
  * Fitur:
  * 1. Saat dijalankan pertama kali, otomatis memunculkan QR-Code di layar
@@ -36,7 +36,7 @@ Maka Admin otomatis mengirimkan *QR-Code QRIS* beserta panduan pembayarannya!
 • *Ketik Manual:* Langsung ketik nama aplikasi lain di chat ini (contoh: *netflix*, *youtube*, *chatgpt*, *canva*, atau ketik *menu* untuk daftar lengkap).
 • *Via Website:* Atau silakan kembali memilih produk melalui *Landing Page* katalog kami.
 
-📌 *Jangan lupa Save Kontak Admin (0858-5951-7510)* untuk Syarat Klaim Garansi & Info Promo di Story WA ya! ✨`;
+📌 *Jangan lupa Save Kontak Admin (+62 858-5951-7510)* untuk Syarat Klaim Garansi & Info Promo di Story WA ya! ✨`;
 
 // ============================================================================
 // 2. PANDUAN & PESAN OTOMATIS SAAT BUYER KETIK "BAYAR" / "PAYMENT"
@@ -307,7 +307,7 @@ const pricelists = {
 • Balas chat ini dengan ketik *minat reseller* untuk info pendaftaran mitra!`,
 
   "bonus": `🎁 *INFO PROGRAM BONUS — TITIK DIGI SHOP* 🎁
-• Pastikan kakak sudah *Save Nomor Admin (0858-5951-7510)* dan pantau terus Story WA Admin untuk klaim bonus pelanggan setia & Flash Sale harian!`
+• Pastikan kakak sudah *Save Nomor Admin (+62 858-5951-7510)* dan pantau terus Story WA Admin untuk klaim bonus pelanggan setia & Flash Sale harian!`
 };
 
 // ============================================================================
@@ -375,14 +375,14 @@ async function startTitikDigiBot() {
 
   sock.ev.on("creds.update", saveCreds);
 
-  // Tampilkan QR-Code untuk di-scan oleh WA Admin (085859517510)
+  // Tampilkan QR-Code untuk di-scan oleh WA Admin (+62 858-5951-7510)
   sock.ev.on("connection.update", (update) => {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
       console.clear();
       console.log("=========================================================");
-      console.log("📲 SCAN QR-CODE INI DARI WHATSAPP ADMIN (0858-5951-7510)");
+      console.log("📲 SCAN QR-CODE INI DARI WHATSAPP ADMIN (+62 858-5951-7510)");
       console.log("Cara Scan: Buka WA -> Titik Tiga -> Perangkat Tertaut -> Tautkan Perangkat");
       console.log("=========================================================\n");
       qrcode.generate(qr, { small: true });
