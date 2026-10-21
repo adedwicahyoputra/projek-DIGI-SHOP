@@ -19,6 +19,15 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#EEF2FF',
+              100: '#E0E7FF',
+              500: '#6366F1',
+              600: '#4F46E5',
+              700: '#4338CA',
+            }
           }
         }
       }
@@ -28,201 +37,366 @@
   <style>
     * { -webkit-tap-highlight-color: transparent; }
     body {
-      background-color: #090A0F;
-      color: #F1F5F9;
+      background-color: #07080B;
+      color: #F8FAFC;
       overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
-    .ambient-bg {
-      background: radial-gradient(75% 45% at 50% 0%, rgba(99, 102, 241, 0.14) 0%, rgba(16, 185, 129, 0.04) 50%, rgba(9, 10, 15, 0) 100%);
+
+    /* Ambient Glow Background - Halus & Elegan khas Apple/Google */
+    .ambient-mesh {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      height: 520px;
+      background: radial-gradient(circle at 50% 10%, rgba(99, 102, 241, 0.16) 0%, rgba(16, 185, 129, 0.05) 45%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
     }
+
+    /* Kartu & Elemen Berstandar Modern */
     .cat-card {
-      background: #11131C;
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: linear-gradient(180deg, rgba(22, 25, 37, 0.75) 0%, rgba(14, 16, 24, 0.85) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
     }
+    .cat-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(99, 102, 241, 0.15);
+    }
+
+    /* Tombol Produk: Berkontras Jelas & Responsif */
     .item-btn {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.18s ease;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .item-btn:hover {
-      background: rgba(99, 102, 241, 0.14);
-      border-color: rgba(99, 102, 241, 0.5);
-      transform: translateY(-1px);
+      background: rgba(99, 102, 241, 0.16);
+      border-color: rgba(129, 140, 248, 0.55);
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 14px -2px rgba(99, 102, 241, 0.25);
     }
     .item-btn:active {
       transform: scale(0.98);
     }
+
+    /* Tombol Filter Kategori (Pill) */
+    .pill-tab {
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .pill-tab.active {
+      background: #4F46E5;
+      color: #FFFFFF;
+      border-color: #6366F1;
+      box-shadow: 0 2px 10px rgba(79, 70, 229, 0.4);
+    }
+
+    /* Focus Accessible untuk NVDA & Keyboard */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid #818CF8 !important;
+      outline-offset: 2px !important;
+    }
   </style>
 </head>
-<body class="antialiased selection:bg-indigo-500 selection:text-white">
+<body class="antialiased selection:bg-indigo-500 selection:text-white relative min-h-screen">
 
-  <!-- NAVBAR SIMPEL -->
-  <header class="sticky top-0 z-40 bg-[#090A0F]/90 backdrop-blur-xl border-b border-white/[0.06]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-extrabold text-xs shrink-0">
+  <!-- Ambient Light Background -->
+  <div class="ambient-mesh" aria-hidden="true"></div>
+
+  <!-- NAVBAR ELEGAN & PROFESIONAL -->
+  <header role="banner" class="sticky top-0 z-40 bg-[#07080B]/85 backdrop-blur-xl border-b border-white/[0.08] transition-all">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group focus-visible:rounded-lg" aria-label="TITIK DIGI SHOP Beranda">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-extrabold text-xs shadow-md shadow-indigo-500/25 shrink-0 group-hover:scale-105 transition-transform">
           TDS
         </div>
         <div>
-          <span class="font-extrabold text-sm sm:text-base tracking-tight text-white block leading-none">TITIK DIGI SHOP</span>
-          <span class="text-[10px] sm:text-[11px] text-slate-400 font-medium block mt-0.5">Satu tempat, beragam kebutuhan digital.</span>
+          <span class="font-extrabold text-sm sm:text-base tracking-tight text-white block leading-none group-hover:text-indigo-200 transition-colors">
+            TITIK DIGI SHOP
+          </span>
+          <span class="text-[11px] text-slate-400 font-medium block mt-1">
+            Satu tempat, beragam kebutuhan digital.
+          </span>
         </div>
       </a>
 
-      <div class="flex items-center gap-2">
+      <!-- Tombol Aksi Navbar dengan Kontras Jelas -->
+      <nav class="flex items-center gap-2 sm:gap-2.5" aria-label="Navigasi Utama">
         <button
           type="button"
           onclick="downloadAdminVCard()"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 transition">
-          Save Kontak
+          class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-200 hover:text-white bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 hover:border-white/25 transition shadow-sm flex items-center gap-1.5"
+          title="Simpan nomor kontak Admin ke HP">
+          <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          <span>Save Kontak</span>
         </button>
         <a href="https://wa.me/6285859517510?text=bayar"
            target="_blank" rel="noopener"
-           class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition">
-          Minta QRIS
+           class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition shadow-md shadow-emerald-900/30 flex items-center gap-1.5 border border-emerald-400/30"
+           aria-label="Minta QRIS pembayaran lewat WhatsApp">
+          <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.17-1.32C8.61 21.52 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.59 0-3.08-.47-4.34-1.28l-.31-.2-3.11.79.83-3.03-.2-.33C4.42 14.7 4 13.39 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
+          </svg>
+          <span>Minta QRIS</span>
         </a>
-      </div>
+      </nav>
     </div>
   </header>
 
   <!-- =========================================================
-       HERO RINGKAS (DENGAN TAGLINE TOKO)
+       HERO ELEGAN (STANDAR PERUSAHAAN & HIGH-CONVERTING)
        ========================================================= -->
-  <section class="ambient-bg pt-8 pb-6 sm:pt-12 sm:pb-10 px-4 sm:px-6">
-    <div class="max-w-3xl mx-auto text-center">
-      <!-- Attention -->
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] text-emerald-400 font-medium mb-3">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        Bot Pricelist Otomatis 24 Jam • Full Garansi
-      </span>
-      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-        TITIK DIGI SHOP
-      </h1>
-      <p class="text-sm sm:text-base font-semibold text-indigo-400 mt-1">
-        Satu tempat, beragam kebutuhan digital.
-      </p>
+  <main role="main">
+    <section class="relative pt-10 pb-8 sm:pt-14 sm:pb-12 px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        
+        <!-- Live Badge Animasi Halus -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs text-emerald-400 font-semibold mb-4 shadow-sm backdrop-blur-md">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>Bot Pricelist Otomatis 24 Jam • Full Garansi</span>
+        </div>
 
-      <!-- Interest & Desire -->
-      <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2.5 leading-relaxed">
-        Hemat hingga 80%, proses instan, dan bergaransi penuh. <strong>Cukup klik nama aplikasi di bawah</strong> — otomatis masuk ke WhatsApp Admin (<strong class="text-slate-200">0858-5951-7510</strong>) untuk melihat pricelist-nya.
-      </p>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          TITIK DIGI SHOP
+        </h1>
+        <p class="text-base sm:text-lg font-semibold text-indigo-400 mt-2">
+          Satu tempat, beragam kebutuhan digital.
+        </p>
 
-      <!-- Action: Cari Cepat / Ketik Manual -->
-      <div class="mt-5 max-w-md mx-auto">
-        <div class="relative">
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Cari cepat aplikasi (cth: Netflix, Gemini, Canva)..."
-            class="w-full bg-[#11131C] border border-white/10 focus:border-indigo-500 rounded-xl pl-9 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition"
-          />
-          <svg class="w-4 h-4 text-slate-500 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
+        <p class="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto mt-3 leading-relaxed">
+          Hemat hingga 80%, proses instan, dan bergaransi penuh. <strong class="text-white">Cukup klik nama aplikasi di bawah</strong> — otomatis masuk ke WhatsApp Admin (<strong class="text-indigo-300">0858-5951-7510</strong>) untuk melihat pricelist-nya.
+        </p>
+
+        <!-- Kotak Pencarian Modern dengan Icon & Reset -->
+        <div class="mt-6 max-w-md mx-auto" role="search">
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-indigo-400 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Cari cepat aplikasi (cth: Netflix, Gemini, Canva)..."
+              class="w-full bg-[#11131C]/90 border border-white/15 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 rounded-2xl pl-10 pr-10 py-3 text-xs sm:text-sm text-white placeholder-slate-400 outline-none transition shadow-inner"
+              aria-label="Cari aplikasi atau produk"
+            />
+            <button
+              id="clearSearch"
+              type="button"
+              onclick="clearSearchInput()"
+              class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white transition"
+              aria-label="Hapus pencarian">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Tab Kategori (Pill Tabs untuk Akses Cepat & Dinamis) -->
+        <div class="mt-5 flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto pb-2 px-1 text-xs" role="tablist" aria-label="Filter Kategori Produk">
+          <button type="button" onclick="filterByCategory('all', this)" class="pill-tab active px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            Semua (43)
+          </button>
+          <button type="button" onclick="filterByCategory('Streaming', this)" class="pill-tab px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            🎬 Streaming
+          </button>
+          <button type="button" onclick="filterByCategory('AI', this)" class="pill-tab px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            🤖 AI
+          </button>
+          <button type="button" onclick="filterByCategory('Desain', this)" class="pill-tab px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            🎨 Desain
+          </button>
+          <button type="button" onclick="filterByCategory('Drama', this)" class="pill-tab px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            📱 Drama & Musik
+          </button>
+          <button type="button" onclick="filterByCategory('Kuliah', this)" class="pill-tab px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            🎓 Kuliah & Kerja
+          </button>
+          <button type="button" onclick="filterByCategory('Sosmed', this)" class="pill-tab px-3 py-1.5 rounded-full font-semibold border border-white/10 text-slate-300 hover:text-white bg-white/[0.04]">
+            🚀 Sosmed & VPN
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         DAFTAR KATEGORI & PRODUK (GRID BERSIH & RESPONSIF)
+         ========================================================= -->
+    <section id="katalog" class="py-4 sm:py-6 px-4 sm:px-6 relative z-10" aria-label="Katalog Produk">
+      <div class="max-w-5xl mx-auto">
+        <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5" aria-live="polite">
+          <!-- Di-render secara dinamis oleh JavaScript -->
+        </div>
+
+        <!-- Jika pencarian tidak ditemukan -->
+        <div id="emptyState" class="hidden text-center py-12 cat-card rounded-3xl p-6 border border-white/10">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="text-base text-white font-bold">Aplikasi tidak ditemukan.</p>
+          <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Coba cari dengan kata kunci lain atau langsung hubungi admin WhatsApp untuk mengecek ketersediaan.</p>
+          <a href="https://wa.me/6285859517510?text=menu"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition">
+            <span>Lihat Menu Lengkap di WA Admin</span>
+            <span>&rarr;</span>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- =========================================================
-       DAFTAR KATEGORI & PRODUK SIMPEL (TIDAK MEMBOSANKAN SAAT SCROLL)
-       ========================================================= -->
-  <section id="katalog" class="py-4 sm:py-6 px-4 sm:px-6">
-    <div class="max-w-5xl mx-auto">
-      <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-        <!-- Di-render secara ringkas per kategori oleh JavaScript -->
+    <!-- =========================================================
+         INFO SINGKAT: ALUR BAYAR QRIS & WAJIB SAVE KONTAK ADMIN
+         ========================================================= -->
+    <section class="py-8 sm:py-12 px-4 sm:px-6 relative z-10" aria-label="Panduan Order dan Kontak">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        <!-- Box 1: Alur Otomatis WA & Cara Scan QRIS -->
+        <div class="cat-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/[0.08]">
+              <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm">
+                  ⚡
+                </span>
+                <h2 class="text-base sm:text-lg font-bold text-white">Cara Order & Bayar via QRIS</h2>
+              </div>
+              <a href="https://wa.me/6285859517510?text=bayar"
+                 target="_blank" rel="noopener"
+                 class="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1"
+                 aria-label="Ketik bayar di WhatsApp untuk meminta QRIS">
+                <span>Ketik 'bayar' di WA</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            <ol class="space-y-3.5 text-xs sm:text-[13px] text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5 border border-indigo-500/30">1</span>
+                <div>
+                  <strong class="text-white">Klik Aplikasi:</strong> Nama produk (misal <code class="px-1.5 py-0.5 rounded bg-indigo-500/15 text-indigo-300 font-mono text-[11px] border border-indigo-500/20">gemini</code>) otomatis terisi di kotak WA Anda. Kirim pesan untuk lihat Pricelist. <span class="text-slate-400">(Ingin cek produk lain? Bisa langsung ketik manual nama aplikasinya di chat WA atau klik lagi dari web ini).</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">2</span>
+                <div>
+                  <strong class="text-white">Ketik <code class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-mono text-[11px] border border-emerald-500/20">bayar</code>:</strong> Jika cocok dengan harganya, balas ketik <code class="text-emerald-400 font-bold">bayar</code> maka Bot Admin otomatis mengirim gambar <strong>QR-Code QRIS</strong>.
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-300 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5 border border-purple-500/30">3</span>
+                <div>
+                  <strong class="text-white">Cara Scan QRIS (1 HP):</strong> Simpan/screenshot gambar QRIS ke Galeri &rarr; buka DANA/GoPay/OVO/ShopeePay/M-Banking &rarr; pilih <strong>Scan QRIS</strong> &rarr; klik <strong>Ikon Galeri</strong> &rarr; pilih gambar QRIS & kirim bukti bayar ke Admin.
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Box 2: Wajib Save Kontak Admin -->
+        <div class="cat-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/[0.08]">
+              <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold text-sm">
+                  📌
+                </span>
+                <h2 class="text-base sm:text-lg font-bold text-white">Wajib Save Kontak Admin</h2>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 font-bold text-xs border border-indigo-500/30">
+                0858-5951-7510
+              </span>
+            </div>
+
+            <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
+              Simpan nomor Admin (<strong>TITIK DIGI SHOP</strong>) di HP Anda untuk mendapatkan:
+            </p>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span><strong class="text-white">Syarat Klaim Garansi:</strong> Jaminan garansi penuh selama masa berlangganan.</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span><strong class="text-white">Update Promo di Story WA:</strong> Info harga terbaru & diskon harian lewat Status WA Admin.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Tombol Aksi Kontak Berkontras Tinggi -->
+          <div class="mt-6 pt-4 border-t border-white/[0.08] flex items-center gap-3">
+            <button
+              type="button"
+              onclick="downloadAdminVCard()"
+              class="flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold text-center transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              <span>Simpan Kontak (.vcf)</span>
+            </button>
+            <a href="https://wa.me/6285859517510?text=Halo%20Admin%20*TITIK%20DIGI%20SHOP*%2C%20saya%20sudah%20save%20nomor%20Admin.%20Mohon%20save%20back%20ya."
+               target="_blank" rel="noopener"
+               class="flex-1 py-3 px-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] active:scale-95 border border-white/15 hover:border-white/25 text-white text-xs font-bold text-center transition shadow-sm flex items-center justify-center gap-2">
+              <span>Minta Save Back WA</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
       </div>
+    </section>
+  </main>
 
-      <!-- Jika pencarian tidak ditemukan -->
-      <div id="emptyState" class="hidden text-center py-8 cat-card rounded-2xl">
-        <p class="text-sm text-slate-300 font-medium">Aplikasi tidak ditemukan.</p>
-        <a href="https://wa.me/6285859517510?text=menu"
-           target="_blank" rel="noopener"
-           class="inline-block mt-3 px-4 py-2 rounded-lg text-xs font-semibold bg-indigo-600 text-white">
-          Lihat Menu Lengkap di WA Admin →
+  <!-- FOOTER ELEGAN & MINIMALIS -->
+  <footer role="contentinfo" class="border-t border-white/[0.08] py-8 px-4 text-center text-xs text-slate-400 bg-[#060709]">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="font-semibold text-slate-300 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
+        TITIK DIGI SHOP — Satu tempat, beragam kebutuhan digital.
+      </div>
+      <div>
+        WhatsApp Admin Resmi: 
+        <a href="https://wa.me/6285859517510?text=menu" target="_blank" rel="noopener" class="text-indigo-400 hover:text-indigo-300 font-bold underline ml-1 focus-visible:rounded">
+          0858-5951-7510
         </a>
       </div>
     </div>
-  </section>
-
-  <!-- =========================================================
-       INFO SINGKAT: ALUR BAYAR QRIS & WAJIB SAVE KONTAK ADMIN
-       ========================================================= -->
-  <section class="py-8 sm:py-10 px-4 sm:px-6">
-    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
-
-      <!-- Box 1: Alur Otomatis WA & Cara Scan QRIS -->
-      <div class="cat-card rounded-2xl p-5 sm:p-6">
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-sm sm:text-base font-bold text-white">⚡ Cara Order & Bayar via QRIS</h2>
-          <a href="https://wa.me/6285859517510?text=bayar"
-             target="_blank" rel="noopener"
-             class="text-xs font-semibold text-emerald-400 hover:underline">
-            Ketik 'bayar' di WA →
-          </a>
-        </div>
-        <ol class="space-y-2 text-xs sm:text-[13px] text-slate-300 leading-relaxed">
-          <li>
-            <strong class="text-white">1. Klik Aplikasi:</strong> Nama produk (misal <code class="text-indigo-400">gemini</code>) otomatis terisi di kotak WA Anda. Kirim pesan untuk lihat Pricelist. <span class="text-slate-400">(Ingin cek produk lain? Bisa langsung ketik manual nama aplikasinya di chat WA atau klik lagi dari web ini).</span>
-          </li>
-          <li>
-            <strong class="text-white">2. Ketik <code class="text-emerald-400">bayar</code>:</strong> Jika cocok dengan harganya, balas ketik <code class="text-emerald-400 font-semibold">bayar</code> maka Bot Admin otomatis mengirim gambar <strong>QR-Code QRIS</strong>.
-          </li>
-          <li>
-            <strong class="text-white">3. Cara Scan QRIS (1 HP):</strong> Simpan/screenshot gambar QRIS ke Galeri &rarr; buka DANA/GoPay/OVO/ShopeePay/M-Banking &rarr; pilih <strong>Scan QRIS</strong> &rarr; klik <strong>Ikon Galeri</strong> &rarr; pilih gambar QRIS & kirim bukti bayar ke Admin.
-          </li>
-        </ol>
-      </div>
-
-      <!-- Box 2: Wajib Save Kontak Admin -->
-      <div class="cat-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-2">
-            <h2 class="text-sm sm:text-base font-bold text-white">📌 Wajib Save Kontak Admin</h2>
-            <span class="text-xs font-bold text-indigo-400">0858-5951-7510</span>
-          </div>
-          <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
-            Simpan nomor Admin (<strong>TITIK DIGI SHOP</strong>) di HP Anda untuk mendapatkan:
-          </p>
-          <ul class="space-y-1.5 text-xs text-slate-400">
-            <li>• <strong class="text-slate-200">Syarat Klaim Garansi:</strong> Jaminan garansi penuh selama masa berlangganan.</li>
-            <li>• <strong class="text-slate-200">Update Promo di Story WA:</strong> Info harga terbaru & diskon harian lewat Status WA Admin.</li>
-          </ul>
-        </div>
-
-        <div class="mt-4 pt-3 border-t border-white/[0.06] flex items-center gap-2.5">
-          <button
-            type="button"
-            onclick="downloadAdminVCard()"
-            class="flex-1 py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold text-center transition">
-            Simpan Kontak (.vcf)
-          </button>
-          <a href="https://wa.me/6285859517510?text=Halo%20Admin%20*TITIK%20DIGI%20SHOP*%2C%20saya%20sudah%20save%20nomor%20Admin.%20Mohon%20save%20back%20ya."
-             target="_blank" rel="noopener"
-             class="flex-1 py-2.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-200 text-xs font-semibold text-center transition">
-            Minta Save Back WA
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER RINGKAS -->
-  <footer class="border-t border-white/[0.06] py-6 px-4 text-center text-xs text-slate-500">
-    <div class="font-semibold text-slate-300">TITIK DIGI SHOP — Satu tempat, beragam kebutuhan digital.</div>
-    <div class="mt-1">WhatsApp Admin Resmi: <a href="https://wa.me/6285859517510?text=menu" target="_blank" rel="noopener" class="text-indigo-400 hover:text-indigo-300 font-semibold underline">0858-5951-7510</a></div>
   </footer>
 
   <!-- =========================================================
-       SCRIPT: DATA PRODUK DALAM KATEGORI SIMPEL & KLIK OTOMATIS WA
+       SCRIPT: LOGIKA KATALOG, PENCARIAN & FILTER
        ========================================================= -->
   <script>
     const WA_ADMIN = "6285859517510";
+    let activeCategory = "all";
 
-    // Daftar Kategori & Produk yang Simpel, Rapi & Tidak Membosankan (6 Kategori Utama)
+    // Data 43 Produk & 6 Kategori Resmi
     const catalogData = [
       {
+        id: "streaming",
         title: "🎬 Kategori Streaming",
         desc: "Nonton film, series & olahraga kualitas HD/4K",
         items: [
@@ -239,6 +413,7 @@
         ]
       },
       {
+        id: "ai",
         title: "🤖 Kategori AI (Artificial Intelligence)",
         desc: "Asisten cerdas untuk tugas, riset, coding & gambar",
         items: [
@@ -251,6 +426,7 @@
         ]
       },
       {
+        id: "desain",
         title: "🎨 Kategori Desain & Editing",
         desc: "Edit desain, foto & video profesional tanpa watermark",
         items: [
@@ -264,6 +440,7 @@
         ]
       },
       {
+        id: "drama",
         title: "📱 Kategori Drama Pendek, Anime & Musik",
         desc: "Maraton short drama viral, anime & musik bebas iklan",
         items: [
@@ -275,6 +452,7 @@
         ]
       },
       {
+        id: "kuliah",
         title: "🎓 Kategori Kuliah, Kerja & Cloud",
         desc: "Cek plagiasi, meeting online, bahasa & penyimpanan",
         items: [
@@ -287,6 +465,7 @@
         ]
       },
       {
+        id: "sosmed",
         title: "🚀 Kategori Sosmed, VPN & Utility",
         desc: "Kebutuhan optimasi sosmed, privasi & olahraga",
         items: [
@@ -302,17 +481,28 @@
     const catalogGrid = document.getElementById("catalogGrid");
     const emptyState = document.getElementById("emptyState");
     const searchInput = document.getElementById("searchInput");
+    const clearSearch = document.getElementById("clearSearch");
 
-    // Buat link WA otomatis terisi nama produk di kotak ketik buyer
     function getWaUrl(keyword) {
       return `https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(keyword.trim().toLowerCase())}`;
     }
 
-    function renderCatalog(query = "") {
-      const q = query.toLowerCase().trim();
+    function renderCatalog() {
+      const q = searchInput.value.toLowerCase().trim();
       let totalFound = 0;
 
+      if (q) {
+        clearSearch.classList.remove("hidden");
+      } else {
+        clearSearch.classList.add("hidden");
+      }
+
       const html = catalogData.map((cat) => {
+        // Cek filter kategori tab
+        if (activeCategory !== "all" && !cat.title.toLowerCase().includes(activeCategory.toLowerCase())) {
+          return "";
+        }
+
         const filteredItems = cat.items.filter(item =>
           !q ||
           item.name.toLowerCase().includes(q) ||
@@ -326,27 +516,35 @@
         const itemsHtml = filteredItems.map(item => `
           <a href="${getWaUrl(item.keyword)}"
              target="_blank" rel="noopener"
-             class="item-btn rounded-xl px-3.5 py-2.5 flex items-center justify-between gap-2 group">
-            <div class="flex items-center gap-2 min-w-0">
-              <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0"></span>
-              <span class="text-xs sm:text-sm font-semibold text-slate-100 group-hover:text-white truncate">${item.name}</span>
-              ${item.badge ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-500/15 text-indigo-300 border border-indigo-500/20 shrink-0">${item.badge}</span>` : ""}
+             class="item-btn rounded-2xl px-3.5 py-3 flex items-center justify-between gap-2.5 group"
+             aria-label="Cek harga ${item.name} lewat WhatsApp">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="w-2 h-2 rounded-full bg-indigo-400 group-hover:bg-emerald-400 group-hover:scale-125 transition-all shrink-0"></span>
+              <span class="text-xs sm:text-sm font-bold text-slate-100 group-hover:text-white truncate tracking-tight">${item.name}</span>
+              ${item.badge ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">${item.badge}</span>` : ""}
             </div>
-            <span class="text-[11px] text-slate-400 group-hover:text-indigo-300 font-medium shrink-0 flex items-center gap-1">
+            <span class="text-xs font-bold text-indigo-300 group-hover:text-emerald-300 shrink-0 flex items-center gap-1.5 transition-colors">
               <span>Cek Harga</span>
-              <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+              <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
             </span>
           </a>
         `).join("");
 
         return `
-          <div class="cat-card rounded-2xl p-5 sm:p-6">
-            <div class="mb-3.5 pb-2.5 border-b border-white/[0.06]">
-              <h2 class="text-base sm:text-lg font-bold text-white">${cat.title}</h2>
-              <p class="text-xs text-slate-400 mt-0.5">${cat.desc}</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              ${itemsHtml}
+          <div class="cat-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between">
+            <div>
+              <div class="mb-4 pb-3 border-b border-white/[0.08] flex items-center justify-between">
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-white tracking-tight">${cat.title}</h2>
+                  <p class="text-xs text-slate-400 mt-0.5">${cat.desc}</p>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-400 px-2 py-0.5 rounded-lg bg-white/[0.04] border border-white/[0.08]">
+                  ${filteredItems.length} Produk
+                </span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                ${itemsHtml}
+              </div>
             </div>
           </div>
         `;
@@ -359,6 +557,19 @@
         emptyState.classList.add("hidden");
         catalogGrid.innerHTML = html;
       }
+    }
+
+    function filterByCategory(catId, btn) {
+      activeCategory = catId;
+      document.querySelectorAll(".pill-tab").forEach(tab => tab.classList.remove("active"));
+      btn.classList.add("active");
+      renderCatalog();
+    }
+
+    function clearSearchInput() {
+      searchInput.value = "";
+      renderCatalog();
+      searchInput.focus();
     }
 
     function downloadAdminVCard() {
@@ -383,10 +594,9 @@
       URL.revokeObjectURL(url);
     }
 
-    searchInput.addEventListener("input", (e) => {
-      renderCatalog(e.target.value);
-    });
+    searchInput.addEventListener("input", renderCatalog);
 
+    // Inisialisasi awal
     renderCatalog();
   </script>
 </body>
